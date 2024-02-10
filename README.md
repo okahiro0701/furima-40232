@@ -1,24 +1,49 @@
-# README
+## usersテーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+| Column               | Type       | Options     |
+| -------------------- | ---------- | ----------- |
+| nickname             | string     | null: false |
+| email                | string     | null: false |
+| password             | string     | null: false |
+| password_confirmation| string     | null: false |
+| name                 | string     | null: false |
+| name_kana            | string     | null: false |
+| birth_date           | string     | null: false |
 
-Things you may want to cover:
+### Association
+- has_many :items
+- has_many :orders
 
-* Ruby version
+## itemsテーブル
+| Column               | Type       | Options                        |
+| -------------------- | ---------- | ------------------------------ |
+| item_name            | string     | null: false                    |
+| category             | string     | null: false                    |
+| price                | string     | null: false                    |
+| seller               | string     | null: false                    |
+| user                 | references | null: false, foreign_key: true |
 
-* System dependencies
+### Association
+- belongs_to :users
+- has_one :orders
 
-* Configuration
+## ordersテーブル
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| buyer  | string     |                                |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
 
-* Database creation
+### Association
+- belongs_to :users
+- belongs_to :items
+- has_one :address
 
-* Database initialization
+## addressテーブル
+| Column   | Type       | Options                        |
+| -------- | ---------- | ------------------------------ |
+| address  | string     | null: false                    |
+| order    | references | null: false, foreign_key: true |
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Association
+- belongs_to :orders
