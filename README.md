@@ -16,17 +16,17 @@
 - has_many :orders
 
 ## itemsテーブル
-| Column               | Type       | Options                        |
-| -------------------- | ---------- | ------------------------------ |
-| item_name            | string     | null: false                    |
-| item_explanation     | text       | null: false                    |
-| category             | string     | null: false                    |
-| item_condition       | string     | null: false                    |
-| shipping_fee_burden  | string     | null: false                    |
-| ship_from_address    | string     | null: false                    |
-| delivery_time        | string     | null: false                    |
-| price                | string     | null: false                    |
-| user                 | references | null: false, foreign_key: true |
+| Column                 | Type       | Options                        |
+| ---------------------- | ---------- | ------------------------------ |
+| item_name              | string     | null: false                    |
+| item_explanation       | text       | null: false                    |
+| category_id            | integer    | null: false                    |
+| item_condition_id      | integer    | null: false                    |
+| shipping_fee_burden_id | integer    | null: false                    |
+| prefecture_id          | integer    | null: false                    |
+| delivery_time_id       | integer    | null: false                    |
+| price                  | string     | null: false                    |
+| user                   | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -46,9 +46,9 @@
 ## addressesテーブル
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
-| address        | string     | null: false                    |
-| prefectures    | string     | null: false                    |
-| municipalities | string     | null: false                    |
+| zip_code       | string     | null: false                    |
+| prefecture_id  | integer    | null: false                    |
+| city_name      | string     | null: false                    |
 | block_number   | string     | null: false                    |
 | building_name  | string     |                                |
 | phone_number   | string     | null: false                    |
