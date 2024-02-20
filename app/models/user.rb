@@ -4,9 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-         validates :nickname, presence: true
+         validates :nickname, presence: true # rubocop:disable Layout/IndentationConsistency
          validates :family_name, presence: true, format: {
-          with: /\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/,
+          with: /\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/, # rubocop:disable Layout/FirstHashElementIndentation
           message: 'は全角で必ず入力する必要があります'
         },on: :create
          validates :first_name, presence: true, format: {
@@ -26,4 +26,6 @@ class User < ApplicationRecord
     with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i,
     message: 'は半角英数字の混合である必要があります'
   },on: :create
+
+  has_many :items
 end
