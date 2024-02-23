@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def index
     @items = Item.all.order(created_at: :desc)
@@ -32,8 +32,17 @@ class ItemsController < ApplicationController
     if @item.update(item_params)
       redirect_to root_path
     else
+      render :index, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    if @item.user_id == current_user.id
+      @item.destroy
+    else
       render :edit, status: :unprocessable_entity
     end
+    redirect_to root_path
   end
 
   private
