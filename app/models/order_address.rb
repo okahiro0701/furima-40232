@@ -5,7 +5,7 @@ class OrderAddress
 
   with_options presence: true do
     validates :zip_code,  format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
-    validates :phone_number, format: {with: /\A\d{11}\z/, message: "is invalid. disclude hyphen(-),must 11 digit,half size number"}
+    validates :phone_number, format: {with: /\A[0-9]{10,11}+\z/, message: "is invalid. disclude hyphen(-),must 11 digit,half size number"}
     validates :city_name, :block_number
     validates :token
     validates :user_id

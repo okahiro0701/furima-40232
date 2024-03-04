@@ -50,17 +50,17 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address.errors.full_messages).to include("Phone number can't be blank")
       end
       it 'phone_numberが9桁だと保存できないこと' do
-        @order_address.phone_number = '0901234567'
+        @order_address.phone_number = '090123456'
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Phone number is invalid. disclude hyphen(-),must 11 digit,half size number")
       end
       it 'phone_numberが12桁だと保存できないこと' do
-        @order_address.phone_number = '0901234567'
+        @order_address.phone_number = '090123456789'
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Phone number is invalid. disclude hyphen(-),must 11 digit,half size number")
       end
       it '電話番号が半角数字以外だと保存できないこと' do
-        @order_address.phone_number = '0901234567'
+        @order_address.phone_number = '０９０１２３４５６７'
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Phone number is invalid. disclude hyphen(-),must 11 digit,half size number")
       end
